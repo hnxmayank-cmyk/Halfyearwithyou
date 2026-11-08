@@ -1,0 +1,893 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#eee1ce">
+
+<title>For "Mine Ishika" ♡</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+
+/* =================================
+   01. GLOBAL DESIGN
+================================= */
+
+:root {
+  --paper: #eee1ce;
+  --paper-light: #f8efdf;
+  --ink: #49362f;
+  --rose: #a75e68;
+  --rose-light: #d69ba0;
+  --brown: #78584b;
+  --gold: #b18a54;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* Vintage paper background */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0.20;
+
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.30'/%3E%3C/svg%3E");
+
+  mix-blend-mode: multiply;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9;
+  pointer-events: none;
+
+  background:
+    radial-gradient(ellipse at center,
+      transparent 45%,
+      rgba(91, 55, 37, .13) 100%);
+}
+
+/* =================================
+   02. MAIN LAYOUT
+================================= */
+
+.page {
+  min-height: 100vh;
+  width: 100%;
+  padding: 35px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+}
+
+.main-card {
+  width: 100%;
+  max-width: 520px;
+  min-height: 690px;
+
+  position: relative;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.38),
+      rgba(232,207,180,.25)
+    );
+
+  border: 1px solid rgba(120,88,75,.35);
+  outline: 1px solid rgba(120,88,75,.15);
+  outline-offset: 7px;
+
+  box-shadow:
+    0 20px 70px rgba(74,45,34,.15),
+    inset 0 0 65px rgba(157,111,76,.08);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  padding: 40px 25px;
+}
+
+/* Decorative corners */
+
+.corner {
+  position: absolute;
+  color: var(--gold);
+  font-size: 29px;
+  opacity: .7;
+}
+
+.c1 { top: 17px; left: 18px; }
+.c2 { top: 17px; right: 18px; transform: rotate(90deg); }
+.c3 { bottom: 17px; left: 18px; transform: rotate(-90deg); }
+.c4 { bottom: 17px; right: 18px; transform: rotate(180deg); }
+
+/* =================================
+   03. INTRO TEXT
+================================= */
+
+.top-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 10px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--brown);
+  margin-bottom: 28px;
+
+  animation: fadeUp 1.2s ease both;
+}
+
+.small-flower {
+  font-size: 25px;
+  color: var(--rose);
+  margin-bottom: 12px;
+
+  animation: softPulse 3s infinite ease-in-out;
+}
+
+.main-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(54px, 12vw, 77px);
+  font-weight: 400;
+  line-height: 1.15;
+  color: #96535e;
+
+  animation: fadeUp 1.4s ease both;
+}
+
+.subtitle {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 15px;
+  letter-spacing: 1px;
+  color: var(--brown);
+  margin-top: 10px;
+
+  animation: fadeUp 1.6s ease both;
+}
+
+.separator {
+  width: 155px;
+  height: 1px;
+  margin: 27px auto;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--gold),
+    transparent
+  );
+}
+
+/* =================================
+   04. ENVELOPE
+================================= */
+
+.envelope-area {
+  width: 250px;
+  height: 185px;
+  position: relative;
+  margin: 8px auto 24px;
+  perspective: 900px;
+
+  animation: fadeUp 1.8s ease both;
+}
+
+.envelope {
+  position: absolute;
+  width: 100%;
+  height: 145px;
+  bottom: 0;
+  left: 0;
+  background: #c98f87;
+
+  border-radius: 4px;
+
+  box-shadow:
+    0 13px 25px rgba(75,42,36,.17);
+
+  cursor: pointer;
+  transition: transform .5s;
+}
+
+.envelope:hover {
+  transform: translateY(-5px);
+}
+
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  background: #d9a9a0;
+  border-radius: 4px;
+}
+
+/* Envelope front triangles */
+
+.envelope-front {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 4;
+}
+
+.envelope-front::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  border-left: 125px solid #e4b5a9;
+  border-right: 125px solid #e4b5a9;
+  border-top: 85px solid transparent;
+}
+
+.envelope-front::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  border-left: 125px solid transparent;
+  border-right: 125px solid transparent;
+  border-bottom: 90px solid #d59d95;
+}
+
+/* Envelope flap */
+
+.flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+
+  border-left: 125px solid transparent;
+  border-right: 125px solid transparent;
+  border-top: 90px solid #b97879;
+
+  transform-origin: top;
+  transition: transform .9s ease;
+  z-index: 5;
+}
+
+/* Letter */
+
+.letter {
+  position: absolute;
+  width: 88%;
+  height: 135px;
+  left: 6%;
+  top: 5px;
+
+  background: #fff7e8;
+  border: 1px solid #d9c5a4;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 2;
+
+  transition:
+    transform 1.2s ease,
+    opacity .6s ease;
+}
+
+.letter p {
+  font-family: 'Great Vibes', cursive;
+  font-size: 28px;
+  color: var(--rose);
+}
+
+.letter span {
+  font-family: 'Playfair Display', serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  margin-top: 8px;
+}
+
+.seal {
+  position: absolute;
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+
+  background: #974d58;
+  color: #f9e7d3;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 23px;
+  left: calc(50% - 21px);
+  top: 68px;
+
+  z-index: 6;
+
+  box-shadow: 0 3px 8px rgba(0,0,0,.15);
+  transition: opacity .4s;
+}
+
+/* Open animation */
+
+.envelope.open .flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.envelope.open .letter {
+  transform: translateY(-125px);
+  z-index: 7;
+}
+
+.envelope.open .seal {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* =================================
+   05. OPEN BUTTON
+================================= */
+
+.open-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  font-style: italic;
+  letter-spacing: 1px;
+  color: var(--brown);
+  margin-bottom: 17px;
+}
+
+.open-btn {
+  border: 1px solid #a86a70;
+  background: rgba(255,255,255,.20);
+
+  padding: 13px 31px;
+
+  font-family: 'Playfair Display', serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  color: #844a54;
+  cursor: pointer;
+
+  transition: all .35s ease;
+}
+
+.open-btn:hover {
+  background: #a45d67;
+  color: #fff5e9;
+  box-shadow: 0 8px 20px rgba(125,66,72,.2);
+  transform: translateY(-3px);
+}
+
+.open-btn:disabled {
+  opacity: .5;
+  cursor: default;
+}
+
+/* =================================
+   06. SECOND MESSAGE
+================================= */
+
+.message-screen {
+  display: none;
+  width: 100%;
+  animation: fadeUp 1.5s ease both;
+}
+
+.message-screen.visible {
+  display: block;
+}
+
+.message-heading {
+  font-family: 'Great Vibes', cursive;
+  font-size: 52px;
+  color: var(--rose);
+  margin-bottom: 12px;
+}
+
+.message-body {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 21px;
+  line-height: 1.65;
+  color: #574239;
+
+  max-width: 390px;
+  margin: auto;
+}
+
+.message-body p {
+  margin-bottom: 15px;
+}
+
+.signature {
+  font-family: 'Great Vibes', cursive;
+  font-size: 36px;
+  color: #a45d67;
+  margin-top: 25px;
+}
+
+.next-btn {
+  display: inline-block;
+  margin-top: 26px;
+  padding: 13px 27px;
+
+  color: #fff5e9;
+  background: #96545e;
+
+  border: 1px solid #96545e;
+  text-decoration: none;
+
+  font-family: 'Playfair Display', serif;
+  font-size: 11px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+
+  transition: .3s;
+}
+
+.next-btn:hover {
+  background: transparent;
+  color: #96545e;
+}
+
+/* =================================
+   07. FLOATING FLOWERS
+================================= */
+
+.petal {
+  position: fixed;
+  top: -30px;
+  z-index: 2;
+  pointer-events: none;
+  opacity: .65;
+
+  animation: falling linear forwards;
+}
+
+@keyframes falling {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* =================================
+   08. MUSIC CONTROL
+================================= */
+
+.music-control {
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+
+  z-index: 20;
+
+  background: rgba(255,248,235,.85);
+  border: 1px solid rgba(150,84,94,.4);
+  border-radius: 30px;
+
+  padding: 10px 15px;
+
+  color: #96545e;
+  font-family: 'Playfair Display', serif;
+  font-size: 11px;
+
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  gap: 8px;
+}
+
+.music-control.show {
+  display: flex;
+}
+
+/* =================================
+   09. FOOTER
+================================= */
+
+.footer {
+  margin-top: 34px;
+  font-family: 'Playfair Display', serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #997b69;
+}
+
+/* =================================
+   10. ANIMATIONS
+================================= */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes softPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: .7;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+/* =================================
+   11. MOBILE RESPONSIVE
+================================= */
+
+@media (max-width: 480px) {
+
+  .page {
+    padding: 22px 16px;
+  }
+
+  .main-card {
+    min-height: 650px;
+    padding: 40px 18px;
+  }
+
+  .main-title {
+    font-size: 59px;
+  }
+
+  .message-body {
+    font-size: 19px;
+  }
+
+  .message-heading {
+    font-size: 45px;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<main class="page">
+
+  <section class="main-card">
+
+    <span class="corner c1">❧</span>
+    <span class="corner c2">❧</span>
+    <span class="corner c3">❧</span>
+    <span class="corner c4">❧</span>
+
+    <!-- OPENING SCREEN -->
+
+    <div id="openingScreen">
+
+      <p class="top-label">
+        A little something, made with love
+      </p>
+
+      <div class="small-flower">✿</div>
+
+      <h1 class="main-title">
+        For Mine Motie
+      </h1>
+
+      <p class="subtitle">
+        A little story about you and me.
+      </p>
+
+      <div class="separator"></div>
+
+      <!-- ENVELOPE -->
+
+      <div class="envelope-area">
+
+        <div class="envelope" id="envelope">
+
+          <div class="envelope-back"></div>
+
+          <div class="letter">
+            <p>To my favourite girl</p>
+            <span>WITH LOVE, ur Ganda kutta🐶 </span>
+          </div>
+
+          <div class="flap"></div>
+
+          <div class="envelope-front"></div>
+
+          <div class="seal">♡</div>
+
+        </div>
+
+      </div>
+
+      <p class="open-text">
+        There's something I want you to read...
+      </p>
+
+      <button class="open-btn" id="openBtn">
+        Open this ♡
+      </button>
+
+    </div>
+
+
+    <!-- SECOND SCREEN -->
+
+    <div class="message-screen" id="messageScreen">
+
+      <div class="small-flower">✿</div>
+
+      <h2 class="message-heading">
+        Hieeee cutuuu, how are uu!!
+      </h2>
+
+      <div class="separator"></div>
+
+      <div class="message-body">
+
+        <p>
+          Before we go any further, I wanna tell you something.
+        </p>
+
+        <p>
+          I made this little thing for you. And, ye sirf koi website nhi h hehe. I just wanted to make something where we could keep our memories, all those little things and our 6 months of journey together.
+        </p>
+
+        <p>
+          It took me some time to put everything together, but I really wanted to make this for you.
+        </p>
+
+        <p>
+          So take your time, read everything slowly,
+          and don't skip anything, okay? Hehehe.
+        </p>
+
+        <p>
+          i tried my best ik ye itni achi nhi bni h but feelings to express kr hi degi 
+        </p>
+
+      </div>
+
+      <div class="signature">
+        Sooo, let's start? ♡
+      </div>
+
+      <a href="chapter2.html" class="next-btn">
+        Next Page →
+      </a>
+
+    </div>
+
+
+    <footer class="footer">
+      Est. 08 June 2026 · half year huh !!!
+    </footer>
+
+  </section>
+
+</main>
+
+
+<!-- BACKGROUND MUSIC -->
+
+<audio id="backgroundMusic" loop preload="none">
+  <source src="music/intro.mp3" type="audio/mpeg">
+</audio>
+
+
+<!-- MUSIC BUTTON -->
+
+<button class="music-control" id="musicBtn">
+  <span id="musicIcon">♫</span>
+  <span id="musicLabel">Music on</span>
+</button>
+
+
+<script>
+
+/* =================================
+   01. ELEMENTS
+================================= */
+
+const envelope = document.getElementById("envelope");
+const openBtn = document.getElementById("openBtn");
+
+const openingScreen =
+  document.getElementById("openingScreen");
+
+const messageScreen =
+  document.getElementById("messageScreen");
+
+const music = document.getElementById("backgroundMusic");
+
+const musicBtn = document.getElementById("musicBtn");
+const musicIcon = document.getElementById("musicIcon");
+const musicLabel = document.getElementById("musicLabel");
+
+
+/* =================================
+   02. OPEN ENVELOPE
+================================= */
+
+let isOpened = false;
+
+openBtn.addEventListener("click", async () => {
+
+  if (isOpened) return;
+
+  isOpened = true;
+
+  openBtn.disabled = true;
+  openBtn.textContent = "Opening your letter...";
+
+  envelope.classList.add("open");
+
+  // Start music after her interaction
+
+  try {
+    await music.play();
+    musicBtn.classList.add("show");
+    musicLabel.textContent = "Music on";
+  } catch (error) {
+    musicBtn.classList.add("show");
+    musicLabel.textContent = "Play music";
+    musicIcon.textContent = "♫";
+  }
+
+  // Wait for envelope animation
+
+  setTimeout(() => {
+
+    openingScreen.style.display = "none";
+
+    messageScreen.classList.add("visible");
+
+    createPetals();
+
+  }, 1500);
+
+});
+
+
+/* =================================
+   03. MUSIC CONTROLS
+================================= */
+
+musicBtn.addEventListener("click", async () => {
+
+  if (music.paused) {
+
+    try {
+      await music.play();
+
+      musicLabel.textContent = "Music on";
+      musicIcon.textContent = "♫";
+
+    } catch (error) {
+      musicLabel.textContent = "Unavailable";
+    }
+
+  } else {
+
+    music.pause();
+
+    musicLabel.textContent = "Music off";
+    musicIcon.textContent = "♪";
+
+  }
+
+});
+
+
+/* =================================
+   04. FLOATING PETALS
+================================= */
+
+function createPetals() {
+
+  const symbols = ["✿", "❀", "♡", "❁"];
+
+  function createOnePetal() {
+
+    const petal = document.createElement("div");
+
+    petal.className = "petal";
+
+    petal.textContent =
+      symbols[Math.floor(Math.random() * symbols.length)];
+
+    petal.style.left = Math.random() * 100 + "vw";
+
+    petal.style.fontSize =
+      (12 + Math.random() * 15) + "px";
+
+    petal.style.animationDuration =
+      (7 + Math.random() * 8) + "s";
+
+    document.body.appendChild(petal);
+
+    setTimeout(() => {
+      petal.remove();
+    }, 16000);
+
+  }
+
+  // Gentle falling flowers
+
+  for (let i = 0; i < 12; i++) {
+    setTimeout(createOnePetal, i * 350);
+  }
+
+  // Continue while message is visible
+
+  const interval = setInterval(() => {
+
+    if (!messageScreen.classList.contains("visible")) {
+      clearInterval(interval);
+      return;
+    }
+
+    createOnePetal();
+
+  }, 1100);
+
+}
+
+</script>
+
+</body>
+</html>

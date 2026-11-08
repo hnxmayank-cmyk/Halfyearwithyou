@@ -1,0 +1,936 @@
+HTML
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#25243b">
+
+<title>Chapter 4 🌙| Miles Between Us</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --night: #25243b;
+  --night2: #37344e;
+  --cream: #f1e4d1;
+  --rose: #c18b99;
+  --gold: #d3b27b;
+  --brown: #755d57;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: #49372f;
+  font-family: 'Cormorant Garamond', serif;
+  overflow-x: hidden;
+}
+
+/* NAV */
+
+nav {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 100%;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+nav a, nav span {
+  color: #f4e4d4;
+  text-decoration: none;
+  font: 10px 'Playfair Display', serif;
+  letter-spacing: 2px;
+}
+
+/* NIGHT SKY */
+
+.hero {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 50% 90%, #68617b 0%, transparent 50%),
+    linear-gradient(160deg, #171a30, #37334f 65%, #685c70);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 100px 20px 70px;
+  color: var(--cream);
+}
+
+.stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  color: #f8e8c6;
+  animation: twinkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: .2; transform: scale(.7); }
+  to { opacity: 1; transform: scale(1.25); }
+}
+
+.moon {
+  width: 105px;
+  height: 105px;
+  border-radius: 50%;
+  background: #f7e8c8;
+  box-shadow: 0 0 25px #e9d6aa, 0 0 75px rgba(241,216,165,.4);
+  margin-bottom: 40px;
+  animation: moonFloat 5s ease-in-out infinite;
+}
+
+@keyframes moonFloat {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-13px); }
+}
+
+.hero .label {
+  font: 10px 'Playfair Display', serif;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #e6c9ad;
+}
+
+.hero h1 {
+  font: clamp(58px, 12vw, 88px) 'Great Vibes', cursive;
+  color: #f2d9d1;
+  margin: 20px 0;
+  text-shadow: 0 0 25px rgba(226,180,190,.3);
+}
+
+.hero .subtitle {
+  font: italic 17px 'Playfair Display', serif;
+  color: #e8d9c8;
+  max-width: 340px;
+  line-height: 1.7;
+}
+
+.hero .scroll {
+  margin-top: 55px;
+  font: 10px 'Playfair Display', serif;
+  letter-spacing: 3px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  50% { transform: translateY(9px); }
+}
+
+/* CONTENT */
+
+.section {
+  padding: 85px 22px;
+}
+
+.container {
+  max-width: 740px;
+  margin: auto;
+}
+
+.label {
+  text-align: center;
+  font: 10px 'Playfair Display', serif;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--brown);
+}
+
+.heading {
+  text-align: center;
+  font: clamp(43px, 9vw, 60px) 'Great Vibes', cursive;
+  color: #a45e69;
+  margin: 15px 0 25px;
+}
+
+.divider {
+  height: 1px;
+  width: 140px;
+  margin: 25px auto;
+  background: linear-gradient(to right, transparent, #b18a54, transparent);
+}
+
+.story {
+  max-width: 580px;
+  margin: auto;
+  text-align: center;
+  font-size: 22px;
+  line-height: 1.8;
+}
+
+.story p { margin-bottom: 20px; }
+
+.highlight {
+  color: #a45e69;
+  font-style: italic;
+}
+
+/* CONNECTED STARS */
+
+.distance {
+  background: #29283e;
+  color: #f1e4d1;
+  padding: 85px 20px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.distance .heading {
+  color: #e5c1c1;
+}
+
+.sky-map {
+  position: relative;
+  max-width: 500px;
+  height: 235px;
+  margin: 45px auto 25px;
+}
+
+.location {
+  position: absolute;
+  top: 25px;
+  width: 105px;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 12px;
+}
+
+.location.left { left: 0; }
+.location.right { right: 0; }
+
+.location .pin {
+  display: block;
+  font-size: 31px;
+  margin-bottom: 12px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  50% { transform: scale(1.2); }
+}
+
+.travel-line {
+  position: absolute;
+  top: 72px;
+  left: 20%;
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #e8c9a0, transparent);
+  overflow: visible;
+}
+
+.traveller {
+  position: absolute;
+  top: -13px;
+  left: 0;
+  font-size: 24px;
+  animation: travel 4s ease-in-out infinite alternate;
+}
+
+@keyframes travel {
+  from { left: 0; }
+  to { left: calc(100% - 20px); }
+}
+
+.sky-note {
+  font-style: italic;
+  font-size: 19px;
+  color: #e5d3d2;
+  line-height: 1.6;
+  max-width: 450px;
+  margin: auto;
+}
+
+/* PHOTOS */
+
+.gallery {
+  max-width: 600px;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 55px;
+}
+
+.polaroid {
+  width: 235px;
+  background: #fff8eb;
+  padding: 10px 10px 22px;
+  box-shadow: 0 14px 35px rgba(50,30,25,.18);
+  opacity: 0;
+  transition: opacity 1s, transform 1s cubic-bezier(.2,.8,.2,1);
+}
+
+.polaroid:nth-child(1) {
+  align-self: flex-start;
+  transform: translateX(-100px) rotate(-10deg);
+}
+
+.polaroid:nth-child(2) {
+  align-self: flex-end;
+  transform: translateX(100px) rotate(10deg);
+}
+
+.polaroid:nth-child(3) {
+  align-self: center;
+  transform: translateY(80px) rotate(-5deg);
+}
+
+.polaroid.show {
+  opacity: 1;
+}
+
+.polaroid:nth-child(1).show {
+  transform: translateX(0) rotate(-4deg);
+}
+
+.polaroid:nth-child(2).show {
+  transform: translateX(0) rotate(4deg);
+}
+
+.polaroid:nth-child(3).show {
+  transform: translateY(0) rotate(-2deg);
+}
+
+.polaroid.float {
+  animation: floating 4s ease-in-out infinite;
+}
+
+.polaroid:nth-child(2).float { animation-delay: -1s; }
+.polaroid:nth-child(3).float { animation-delay: -2s; }
+
+@keyframes floating {
+  50% { translate: 0 -12px; }
+}
+
+.polaroid img {
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  display: block;
+  background: #e4d5c1;
+}
+
+.polaroid p {
+  text-align: center;
+  font: 26px 'Great Vibes', cursive;
+  color: #a45e69;
+  margin-top: 12px;
+}
+
+/* LETTER */
+
+.letter-section {
+  padding: 90px 22px;
+  background: #e8d9c6;
+}
+
+.envelope {
+  max-width: 440px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.envelope-button {
+  width: 100%;
+  border: none;
+  background: #a66a70;
+  color: #fff4e4;
+  padding: 27px 15px;
+  cursor: pointer;
+  font: 23px 'Great Vibes', cursive;
+  box-shadow: 0 12px 30px rgba(70,40,40,.2);
+  transition: transform .3s;
+}
+
+.envelope-button:active {
+  transform: scale(.97);
+}
+
+.envelope-button span {
+  display: block;
+  font: 10px 'Playfair Display', serif;
+  letter-spacing: 2px;
+  margin-top: 10px;
+}
+
+.letter {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: max-height 1s ease, opacity .8s, transform .8s;
+  background: #fff7e8;
+  box-shadow: 0 12px 30px rgba(70,40,40,.12);
+  text-align: left;
+  margin-top: 15px;
+}
+
+.letter.open {
+  max-height: 800px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.letter-content {
+  padding: 30px 25px;
+  font-size: 20px;
+  line-height: 1.75;
+}
+
+.letter-content h3 {
+  font: 35px 'Great Vibes', cursive;
+  color: #a45e69;
+  margin-bottom: 15px;
+}
+
+/* FINAL */
+
+.final {
+  background: linear-gradient(160deg, #29283e, #51465f);
+  color: #f1e4d1;
+  text-align: center;
+  padding: 100px 25px;
+}
+
+.final h2 {
+  font: 58px 'Great Vibes', cursive;
+  color: #e5c1c1;
+  margin-bottom: 25px;
+}
+
+.final p {
+  max-width: 480px;
+  margin: auto;
+  font-size: 21px;
+  line-height: 1.8;
+}
+
+.signature {
+  font: 36px 'Great Vibes', cursive;
+  color: #e7b7bd;
+  margin-top: 30px;
+}
+
+.next, .back {
+  display: inline-block;
+  padding: 13px 23px;
+  margin: 25px 5px 0;
+  text-decoration: none;
+  font: 10px 'Playfair Display', serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: .3s;
+}
+
+.next {
+  background: #b47783;
+  color: white;
+  border: 1px solid #b47783;
+}
+
+.back {
+  border: 1px solid #d9b9b2;
+  color: #f1e4d1;
+}
+
+/* REVEAL */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 1s, transform 1s;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* HEARTS */
+
+.heart {
+  position: fixed;
+  bottom: -30px;
+  pointer-events: none;
+  z-index: 3;
+  animation: heartRise linear forwards;
+}
+
+@keyframes heartRise {
+  to {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* MUSIC */
+
+.music-btn {
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  z-index: 20;
+  padding: 11px 16px;
+  border: 1px solid #b18a54;
+  background: #fff8eb;
+  color: #a45e69;
+  border-radius: 30px;
+  font: 11px 'Playfair Display', serif;
+  cursor: pointer;
+}
+
+footer {
+  background: #29283e;
+  color: #e1cfbb;
+  text-align: center;
+  padding: 25px;
+  font: 9px 'Playfair Display', serif;
+  letter-spacing: 3px;
+}
+
+@media(max-width:500px) {
+  .story { font-size: 20px; }
+  .polaroid { width: 215px; }
+}
+
+@media(prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="chapter3.html">← Chapter 3</a>
+  <span>OUR LITTLE UNIVERSE ♡</span>
+  <span>04 / 07</span>
+</nav>
+
+<!-- HERO -->
+
+<header class="hero">
+
+  <div class="stars" id="stars"></div>
+
+  <div class="moon"></div>
+
+  <p class="label">Even the stars cannot measure this distance</p>
+
+  <h1>Miles Between Us</h1>
+
+  <p class="subtitle">
+    Different places, different skies,
+    but one little story we're writing together.
+  </p>
+
+  <p class="scroll">SCROLL TO CONTINUE ↓</p>
+
+</header>
+
+
+<!-- STORY -->
+
+<section class="section reveal">
+  
+  <div class="container">
+
+    <p class="label">A little something about us</p>
+
+    <h2 class="heading">Distance...</h2>
+
+    <div class="divider"></div>
+
+    <div class="story">
+
+      <p>
+        Sometimes I wish distance was just a little
+        less annoying.
+      </p>
+
+      <p>
+        But I try to look at it differently...Maybe the most beautiful things are always a little far away. Just like the Moon. 🌕
+      </p>
+
+      <p>
+       Yawwrr I imagine holding your hand, giving you a biiig hug, sitting beside you and talking about absolutely EVERYTHING until we run out of things to say (which probably won't happen 😭).
+      </p>
+
+      <p>
+        But until that day comes,
+        <span class="highlight">
+          I'm happy we get to create our own
+          little moments from wherever we are.
+        </span>
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- DISTANCE ANIMATION -->
+
+<section class="distance reveal">
+
+  <p class="label" style="color:#d9c5b2">
+    Two places, one story
+  </p>
+
+  <h2 class="heading">Under the same sky</h2>
+
+  <div class="sky-map">
+
+    <div class="location left">
+      <span class="pin">📍</span>
+      <p>🐶</p>
+    </div>
+
+    <div class="location right">
+      <span class="pin">📍</span>
+      <p>🐷</p>
+    </div>
+
+    <div class="travel-line">
+      <span class="traveller">♡</span>
+    </div>
+
+  </div>
+
+  <p class="sky-note">
+    No matter how many kilometres are between
+    two places, a little kindness and trust can
+    make the distance feel lighter.
+  </p>
+
+</section>
+
+
+<!-- PHOTOS -->
+
+<section class="section">
+
+  <div class="container">
+
+    <p class="label">A few moments worth keeping</p>
+
+    <h2 class="heading">If only I could be there...</h2>
+
+    <div class="divider"></div>
+
+    <div class="gallery">
+
+      <div class="polaroid">
+        <img src="images/ch4-1.jpg" alt="Memory one">
+        <p>Wish you were here ♡</p>
+      </div>
+
+      <div class="polaroid">
+        <img src="images/ch4-2.jpg" alt="Memory two">
+        <p>One day, together</p>
+      </div>
+
+      <div class="polaroid">
+        <img src="images/ch4-3.jpg" alt="Memory three">
+        <p>Until then, us ♡</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- OPEN THE LETTER -->
+
+<section class="letter-section reveal">
+
+  <div class="container">
+
+    <p class="label">A letter from me to you</p>
+
+    <h2 class="heading">Something I want you to read...</h2>
+
+    <div class="divider"></div>
+
+    <div class="envelope">
+
+      <button class="envelope-button" id="letterBtn">
+        Open your little letter ♡
+        <span>TAP TO UNFOLD</span>
+      </button>
+
+      <div class="letter" id="letter">
+
+        <div class="letter-content">
+
+          <h3>My dearest Ishika,</h3>
+
+          <p>
+            I know sometimes distance can make
+            people overthink things.
+          </p>
+
+          <p>
+            There will be days when we cannot
+            meet, days when our schedules don't
+            match, and days when we miss each
+            other a little more than usual.
+          </p>
+
+          <p>
+            But I don't want you to feel that
+            you have to prove anything to me.
+            I want us to be able to talk honestly,
+            trust each other and understand
+            each other, even on difficult days.
+          </p>
+
+          <p>
+            I cannot promise that every day will
+            be perfect. But I can promise to
+            keep communicating, keep learning
+            and keep choosing honesty.
+          </p>
+
+          <p>
+            And someday, I hope these screens
+            and kilometres will just be a memory
+            we laugh about together.
+          </p>
+
+          <h3>Until that day... ♡</h3>
+
+          <p style="font-family:'Great Vibes';font-size:30px;color:#a45e69;">
+            Yours, 🐶
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ENDING -->
+
+<section class="final reveal">
+
+  <p class="label" style="color:#e2c9bd">
+    And one last thing, mewie bachhu...
+  </p>
+
+  <h2>You never need to worry about me cheating on you...</h2>
+
+  <p>
+    When you finally get your own phone, you can have access to all my socials, Insta, Snap, WhatsApp, everythinggg. 🤧✨
+    Not because you need to keep checking on me, but because I have nothing to hide from you.
+  </p>
+
+  <p>I don't want you to feel scared of losing me. I want you to feel happy that am urs hehehehehhehe. 🫂❤️</p>
+
+  <div class="signature">
+    With love, 🐶 ♡
+  </div>
+
+  <a href="chapter5.html" class="next">
+    Turn the page →
+  </a>
+
+  <br>
+
+  <a href="chapter3.html" class="back">
+    Previous chapter
+  </a>
+
+</section>
+
+<footer>
+  MADE WITH LOVE · 🐶 & 🐷 · 2026
+</footer>
+
+
+<!-- MUSIC -->
+
+<audio id="music" loop preload="none">
+  <source src="music/chapter4.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" id="musicBtn">
+  ♫ Play chapter music
+</button>
+
+
+<script>
+
+/* CREATE STARS */
+
+const stars = document.getElementById("stars");
+
+for (let i = 0; i < 65; i++) {
+
+  const star = document.createElement("span");
+
+  star.className = "star";
+  star.textContent = Math.random() > .5 ? "✦" : "·";
+
+  star.style.left = Math.random() * 100 + "%";
+  star.style.top = Math.random() * 100 + "%";
+  star.style.fontSize = (8 + Math.random() * 13) + "px";
+  star.style.animationDelay = Math.random() * 4 + "s";
+
+  stars.appendChild(star);
+
+}
+
+
+/* SCROLL REVEAL */
+
+const observer = new IntersectionObserver(entries => {
+
+  entries.forEach(entry => {
+
+    if (entry.isIntersecting) {
+      entry.target.classList.add("active");
+      observer.unobserve(entry.target);
+    }
+
+  });
+
+}, { threshold: .12 });
+
+document.querySelectorAll(".reveal").forEach(el => {
+  observer.observe(el);
+});
+
+
+/* PHOTO ANIMATION */
+
+const photoObserver = new IntersectionObserver(entries => {
+
+  entries.forEach(entry => {
+
+    if (entry.isIntersecting) {
+
+      const photo = entry.target;
+
+      photo.classList.add("show");
+
+      setTimeout(() => {
+        photo.classList.add("float");
+      }, 1100);
+
+      photoObserver.unobserve(photo);
+    }
+
+  });
+
+}, { threshold: .2 });
+
+document.querySelectorAll(".polaroid").forEach(el => {
+  photoObserver.observe(el);
+});
+
+
+/* FLOATING HEARTS */
+
+const heartSymbols = ["♡", "♥", "✧"];
+
+function createHeart() {
+
+  const heart = document.createElement("span");
+
+  heart.className = "heart";
+
+  heart.textContent =
+    heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (12 + Math.random() * 16) + "px";
+  heart.style.color = Math.random() > .5 ? "#d49ba8" : "#e3c9a1";
+  heart.style.animationDuration = (7 + Math.random() * 5) + "s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 13000);
+
+}
+
+setInterval(createHeart, 1700);
+
+
+/* LETTER OPEN/CLOSE */
+
+const letterBtn = document.getElementById("letterBtn");
+const letter = document.getElementById("letter");
+
+letterBtn.addEventListener("click", () => {
+
+  letter.classList.toggle("open");
+
+  letterBtn.innerHTML = letter.classList.contains("open")
+    ? "Close your little letter ♡ <span>TAP TO FOLD</span>"
+    : "Open your little letter ♡ <span>TAP TO UNFOLD</span>";
+
+});
+
+
+/* MUSIC */
+
+const music = document.getElementById("music");
+const musicBtn = document.getElementById("musicBtn");
+
+musicBtn.addEventListener("click", async () => {
+
+  try {
+
+    if (music.paused) {
+      await music.play();
+      musicBtn.textContent = "♫ Pause music";
+    } else {
+      music.pause();
+      musicBtn.textContent = "♫ Play chapter music";
+    }
+
+  } catch(error) {
+    musicBtn.textContent = "Music unavailable";
+  }
+
+});
+
+</script>
+
+</body>
+</html>

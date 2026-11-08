@@ -1,0 +1,820 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#eee2d0">
+
+<title>Chapter 03 | My Favourite Things</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<style>
+
+:root {
+  --paper: #eee2d0;
+  --ink: #49372f;
+  --rose: #a45e69;
+  --brown: #80604e;
+  --gold: #b18a54;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Cormorant Garamond', serif;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  opacity: .16;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E");
+}
+
+/* NAVIGATION */
+
+nav {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 100%;
+  padding: 0 22px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 5;
+}
+
+nav a {
+  color: var(--brown);
+  text-decoration: none;
+  font: 11px 'Playfair Display', serif;
+}
+
+nav span {
+  font: 10px 'Playfair Display', serif;
+  letter-spacing: 2px;
+}
+
+/* HERO */
+
+.hero {
+  min-height: 95vh;
+  padding: 110px 20px 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.label {
+  font: 10px 'Playfair Display', serif;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--brown);
+}
+
+.hero h1 {
+  font: clamp(58px, 12vw, 85px) 'Great Vibes', cursive;
+  color: var(--rose);
+  margin: 20px 0;
+}
+
+.hero p:last-child {
+  font: italic 17px 'Playfair Display', serif;
+  color: var(--brown);
+}
+
+.ornament {
+  color: var(--gold);
+  margin: 25px;
+  letter-spacing: 8px;
+}
+
+/* SECTIONS */
+
+.section {
+  padding: 75px 22px;
+}
+
+.container {
+  max-width: 760px;
+  margin: auto;
+}
+
+.heading {
+  text-align: center;
+  font: 52px 'Great Vibes', cursive;
+  color: var(--rose);
+  margin: 15px 0 25px;
+}
+
+.divider {
+  height: 1px;
+  width: 140px;
+  margin: 25px auto;
+  background: linear-gradient(
+    to right, transparent, var(--gold), transparent
+  );
+}
+
+.story {
+  max-width: 580px;
+  margin: auto;
+  text-align: center;
+  font-size: 22px;
+  line-height: 1.7;
+  color: #59443a;
+}
+
+.story p {
+  margin-bottom: 18px;
+}
+
+.highlight {
+  color: var(--rose);
+  font-style: italic;
+}
+
+/* MEMORY CARDS */
+
+.memory-area {
+  max-width: 650px;
+  margin: 65px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 65px;
+}
+
+.memory {
+  width: 245px;
+  padding: 10px 10px 20px;
+  background: #fff8eb;
+  box-shadow: 0 14px 35px rgba(68,43,32,.18);
+  cursor: pointer;
+  position: relative;
+
+  opacity: 0;
+  transition:
+    opacity 1s ease,
+    transform 1s cubic-bezier(.2,.8,.2,1),
+    box-shadow .4s;
+}
+
+.memory:nth-child(1) {
+  align-self: flex-start;
+  transform: translateX(-100px) rotate(-12deg);
+}
+
+.memory:nth-child(2) {
+  align-self: flex-end;
+  transform: translateX(100px) rotate(12deg);
+}
+
+.memory:nth-child(3) {
+  align-self: center;
+  transform: translateY(90px) rotate(-8deg);
+}
+
+.memory.show {
+  opacity: 1;
+}
+
+.memory:nth-child(1).show {
+  transform: translateX(0) rotate(-5deg);
+}
+
+.memory:nth-child(2).show {
+  transform: translateX(0) rotate(5deg);
+}
+
+.memory:nth-child(3).show {
+  transform: translateY(0) rotate(-3deg);
+}
+
+/* FLOATING AFTER ARRIVAL */
+
+.memory.float {
+  animation: floating 4s ease-in-out infinite;
+}
+
+.memory:nth-child(2).float {
+  animation-delay: -1.5s;
+}
+
+.memory:nth-child(3).float {
+  animation-delay: -2.5s;
+}
+
+@keyframes floating {
+  0%, 100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -12px;
+  }
+}
+
+.memory:active {
+  scale: 1.04;
+  box-shadow: 0 20px 40px rgba(68,43,32,.25);
+}
+
+.memory img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+  background: #e4d5c1;
+}
+
+.memory .caption {
+  font: 27px 'Great Vibes', cursive;
+  text-align: center;
+  color: var(--rose);
+  margin-top: 13px;
+}
+
+/* LITTLE REASONS */
+
+.reasons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin: 40px auto;
+}
+
+.reason {
+  padding: 25px 16px;
+  text-align: center;
+  background: rgba(255,255,255,.3);
+  border: 1px solid rgba(128,96,78,.2);
+  transition: transform .4s, background .4s;
+}
+
+.reason:nth-child(even) {
+  transform: translateY(18px);
+}
+
+.reason:hover {
+  transform: translateY(-6px);
+  background: rgba(255,255,255,.6);
+}
+
+.reason span {
+  display: block;
+  font-size: 27px;
+  margin-bottom: 12px;
+}
+
+.reason h3 {
+  font: 17px 'Playfair Display', serif;
+  color: var(--rose);
+  margin-bottom: 9px;
+}
+
+.reason p {
+  font-size: 17px;
+  line-height: 1.45;
+  color: var(--brown);
+}
+
+/* FINAL LETTER */
+
+.final {
+  text-align: center;
+  padding: 100px 25px;
+  background: rgba(167,111,105,.08);
+}
+
+.final h2 {
+  font: 58px 'Great Vibes', cursive;
+  color: var(--rose);
+  margin-bottom: 20px;
+}
+
+.final p {
+  max-width: 490px;
+  margin: auto;
+  font-size: 21px;
+  line-height: 1.7;
+}
+
+.signature {
+  font: 36px 'Great Vibes', cursive;
+  color: var(--rose);
+  margin-top: 25px;
+}
+
+/* BUTTONS */
+
+.next, .back {
+  display: inline-block;
+  margin: 30px 5px 0;
+  padding: 13px 23px;
+  text-decoration: none;
+  font: 11px 'Playfair Display', serif;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: .3s;
+}
+
+.next {
+  background: var(--rose);
+  color: white;
+  border: 1px solid var(--rose);
+}
+
+.back {
+  border: 1px solid var(--rose);
+  color: var(--rose);
+}
+
+.next:hover {
+  background: transparent;
+  color: var(--rose);
+}
+
+/* SCROLL REVEAL */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* FLOATING PETALS */
+
+.petal {
+  position: fixed;
+  top: -30px;
+  z-index: 2;
+  pointer-events: none;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* LIGHTBOX */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(30,20,18,.94);
+  padding: 20px;
+}
+
+.lightbox.show {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 95%;
+  max-height: 85vh;
+  border: 9px solid #fff6e6;
+}
+
+.lightbox button {
+  position: absolute;
+  top: 15px;
+  right: 22px;
+  background: none;
+  color: white;
+  border: 0;
+  font-size: 36px;
+}
+
+/* MUSIC */
+
+.music-btn {
+  position: fixed;
+  z-index: 20;
+  bottom: 18px;
+  right: 18px;
+  border: 1px solid rgba(150,84,94,.4);
+  background: #fff8eb;
+  color: var(--rose);
+  padding: 11px 16px;
+  border-radius: 30px;
+  font: 11px 'Playfair Display', serif;
+  cursor: pointer;
+}
+
+footer {
+  padding: 25px;
+  text-align: center;
+  font: 9px 'Playfair Display', serif;
+  letter-spacing: 3px;
+  color: var(--brown);
+}
+
+/* MOBILE */
+
+@media(max-width: 500px) {
+  .memory {
+    width: 220px;
+  }
+
+  .story {
+    font-size: 20px;
+  }
+
+  .reasons {
+    gap: 12px;
+  }
+}
+
+@media(prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="chapter2.html">← Chapter 2</a>
+  <span>OUR LITTLE UNIVERSE ♡</span>
+  <span>03 / 07</span>
+</nav>
+
+<!-- HERO -->
+
+<header class="hero">
+
+  <p class="label">A collection of little things</p>
+
+  <h1>My Favourite Things</h1>
+
+  <div class="ornament">♡ ❀ ♡</div>
+
+  <p>It's not just one thing. It's everything about you.</p>
+
+</header>
+
+
+<!-- INTRO -->
+
+<section class="section reveal">
+
+  <div class="container">
+
+    <p class="label" style="text-align:center">
+      Dear Cutieka ✨
+    </p>
+
+    <h2 class="heading">Sooo, where do I even start?</h2>
+
+    <div class="divider"></div>
+
+    <div class="story">
+
+      <p>
+        I like you. I like the way you talk, your cuteness, your childish behaviour (even tho ur ahm... ahm... 😭), and obviously the way i tease you too (hehe).
+      </p>
+
+      <p>
+        But the funny thing is, sometimes it's
+        the smallest things that make me smile
+        the most.
+      </p>
+
+      <p>
+        AND YOUR HAIRRRR!!
+      </p>
+
+      <p>I'M SERIOUS. I LOVE YOUR HAIR THE WAY IT ISSS. XD</p>
+      
+
+      <p>
+        <span class="highlight">
+          PWESEEEE, CUT KRNE KI SOCHNA BHI MTT!!! 😭💗
+        </span>
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ANIMATED PHOTO MEMORIES -->
+
+<section class="section">
+
+  <div class="container">
+
+    <p class="label" style="text-align:center">
+      Little pieces of you
+    </p>
+
+    <h2 class="heading">My favourite memories</h2>
+
+    <div class="divider"></div>
+
+    <div class="memory-area">
+
+      <div class="memory">
+        <img src="images/memory-ch1.jpg"
+             alt="Our memory">
+        <p class="caption">That smile of yours ♡</p>
+      </div>
+
+      <div class="memory">
+        <img src="images/memory-ch2.jpg"
+             alt="Another memory">
+        <p class="caption">My favourite human</p>
+      </div>
+
+      <div class="memory">
+        <img src="images/memory-ch3.jpg"
+             alt="Our special moment">
+        <p class="caption">A little piece of happiness</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- REASONS -->
+
+<section class="section reveal">
+
+  <div class="container">
+
+    <p class="label" style="text-align:center">
+      A few things I adore
+    </p>
+
+    <h2 class="heading">It's the little things...</h2>
+
+    <div class="divider"></div>
+
+    <div class="reasons">
+
+      <div class="reason">
+        <span>♡</span>
+        <h3>Your Smile</h3>
+        <p>Because it can make an ordinary day better.</p>
+      </div>
+
+      <div class="reason">
+        <span>✿</span>
+        <h3>fight with me</h3>
+        <p>Like, why is arguing with you sometimes so funnn? pagal ladki.🤌🏻</p>
+      </div>
+
+      <div class="reason">
+        <span>☁</span>
+        <h3>Your Little Habits</h3>
+        <p>Even the things you don't notice yourself doing.</p>
+      </div>
+
+      <div class="reason">
+        <span>♡</span>
+        <h3>Your Presence</h3>
+        <p>Even from far away, you make a difference.home far away from home</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FINAL MESSAGE -->
+
+<section class="final reveal">
+
+  <h2>And there's one more thing...</h2>
+
+  <p>
+    I trust you. I genuinely feel that you're someone who wouldn't intentionally hurt me or break my trust. And I hope we always keep things this way, with honesty and understanding.
+
+    I don't need everything to be perfect between us. I just want us to keep choosing each other, even on the silly days, the annoying days and the days when we fight. 🥹
+  </p>
+
+  <div class="signature">
+    Your 🐶 ♡
+  </div>
+
+  <a href="chapter4.html" class="next">
+    Next chapter →
+  </a>
+
+  <br>
+
+  <a href="chapter2.html" class="back">
+    Previous chapter
+  </a>
+
+</section>
+
+<footer>
+  MADE WITH LOVE · MAYANK & ISHIKA · 2026
+</footer>
+
+
+<!-- MUSIC -->
+
+<audio id="music" loop preload="none">
+  <source src="music/chapter3.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" id="musicBtn">
+  ♫ Play chapter music
+</button>
+
+
+<!-- IMAGE VIEWER -->
+
+<div class="lightbox" id="lightbox">
+  <button id="closeLightbox">×</button>
+  <img id="lightboxImage" src="" alt="Memory">
+</div>
+
+
+<script>
+
+/* MUSIC */
+
+const music = document.getElementById("music");
+const musicBtn = document.getElementById("musicBtn");
+
+musicBtn.addEventListener("click", async () => {
+
+  try {
+
+    if (music.paused) {
+      await music.play();
+      musicBtn.textContent = "♫ Pause music";
+    } else {
+      music.pause();
+      musicBtn.textContent = "♫ Play chapter music";
+    }
+
+  } catch(error) {
+    musicBtn.textContent = "Music unavailable";
+  }
+
+});
+
+
+/* SCROLL ANIMATIONS */
+
+const revealObserver = new IntersectionObserver(entries => {
+
+  entries.forEach(entry => {
+
+    if (entry.isIntersecting) {
+      entry.target.classList.add("active");
+      revealObserver.unobserve(entry.target);
+    }
+
+  });
+
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".reveal").forEach(element => {
+  revealObserver.observe(element);
+});
+
+
+/* PHOTO ENTRANCE + FLOATING */
+
+const memoryObserver = new IntersectionObserver(entries => {
+
+  entries.forEach(entry => {
+
+    if (entry.isIntersecting) {
+
+      const card = entry.target;
+
+      card.classList.add("show");
+
+      setTimeout(() => {
+        card.classList.add("float");
+      }, 1100);
+
+      memoryObserver.unobserve(card);
+
+    }
+
+  });
+
+}, { threshold: 0.2 });
+
+document.querySelectorAll(".memory").forEach(card => {
+  memoryObserver.observe(card);
+});
+
+
+/* FALLING FLOWERS */
+
+const symbols = ["✿", "❀", "♡", "❁"];
+
+function createPetal() {
+
+  const petal = document.createElement("div");
+
+  petal.className = "petal";
+
+  petal.textContent =
+    symbols[Math.floor(Math.random() * symbols.length)];
+
+  petal.style.left = Math.random() * 100 + "vw";
+
+  petal.style.fontSize =
+    (12 + Math.random() * 15) + "px";
+
+  petal.style.animationDuration =
+    (8 + Math.random() * 7) + "s";
+
+  document.body.appendChild(petal);
+
+  setTimeout(() => petal.remove(), 16000);
+
+}
+
+setInterval(createPetal, 1500);
+
+
+/* PHOTO LIGHTBOX */
+
+const lightbox = document.getElementById("lightbox");
+const lightboxImage = document.getElementById("lightboxImage");
+
+document.querySelectorAll(".memory img").forEach(img => {
+
+  img.addEventListener("click", () => {
+
+    if (!img.complete || img.naturalWidth === 0) return;
+
+    lightboxImage.src = img.src;
+    lightbox.classList.add("show");
+
+  });
+
+});
+
+function closeViewer() {
+  lightbox.classList.remove("show");
+  lightboxImage.src = "";
+}
+
+document.getElementById("closeLightbox")
+.addEventListener("click", closeViewer);
+
+lightbox.addEventListener("click", event => {
+  if (event.target === lightbox) closeViewer();
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closeViewer();
+});
+
+</script>
+
+</body>
+</html>
