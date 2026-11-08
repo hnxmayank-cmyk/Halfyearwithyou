@@ -697,12 +697,11 @@ footer {
       <p>But here's something you probably don't know...</p>
 
       <p>I started liking you from the SECOND DAY itself. 👉🏼👈🏼🎀</p>
-      
 
     </div>
 
     <div class="memory-cover">
-      <img src="images/first-memory.jpg"
+      <img src="first-memory.jpg"
            data-base="first-memory"
            alt="Our first memory">
 
@@ -793,28 +792,28 @@ footer {
     <div class="gallery reveal">
 
       <div class="polaroid">
-        <img src="images/first-memory.jpg"
+        <img src="first-memory.jpg"
              data-base="first-memory"
              alt="First memory">
         <p>Our beginning ♡</p>
       </div>
 
       <div class="polaroid">
-        <img src="images/memory-2.jpg"
+        <img src="memory-2.jpg"
              data-base="memory-2"
              alt="Another memory">
         <p>A little moment</p>
       </div>
 
       <div class="polaroid">
-        <img src="images/memory-3.jpg"
+        <img src="memory-3.jpg"
              data-base="memory-3"
              alt="Another special memory">
         <p>One to remember</p>
       </div>
 
       <div class="polaroid">
-        <img src="images/memory-4.jpg"
+        <img src="memory-4.jpg"
              data-base="memory-4"
              alt="Another special memory">
         <p>Forever with you ♡</p>
@@ -869,9 +868,7 @@ footer {
 
 <!-- MUSIC -->
 
-<audio id="music" loop preload="none">
-  <source src="music/chapter2.mp3" type="audio/mpeg">
-</audio>
+<audio id="music" src="chapter2.mp3" loop preload="auto"></audio>
 
 <button class="music-btn" id="musicBtn">
   ♫ Play chapter music
@@ -888,11 +885,10 @@ footer {
 
 <script>
 
-/* SMART IMAGE FALLBACK LOADER */
-/* Automatically checks common extensions & folder paths if an image fails */
+/* SMART IMAGE FALLBACK LOADER (Prioritizes root folder first) */
 
-const fallbackFolders = ["images/", "Images/", "./images/", "../images/", ""];
-const fallbackExts = [".jpg", ".jpeg", ".png", ".webp", ".JPG", ".JPEG", ".PNG", ".jpg.jpg", ".jpg.jpeg", ".png.png"];
+const fallbackFolders = ["", "images/", "Images/", "./images/", "../images/"];
+const fallbackExts = [".jpg", ".jpeg", ".png", ".webp", ".JPG", ".JPEG", ".PNG"];
 
 document.querySelectorAll("img[data-base]").forEach(img => {
   const baseName = img.getAttribute("data-base");
@@ -922,25 +918,31 @@ document.querySelectorAll("img[data-base]").forEach(img => {
 const music = document.getElementById("music");
 const musicBtn = document.getElementById("musicBtn");
 
-let musicStarted = false;
+function startMusic() {
+  music.play().then(() => {
+    musicBtn.textContent = "♫ Pause chapter music";
+  }).catch(() => {});
+}
 
-musicBtn.addEventListener("click", async () => {
-
-  try {
-
-    if (music.paused) {
-      await music.play();
-      musicStarted = true;
-      musicBtn.textContent = "♫ Pause chapter music";
-    } else {
-      music.pause();
-      musicBtn.textContent = "♫ Play chapter music";
-    }
-
-  } catch(error) {
-    musicBtn.textContent = "Music unavailable";
+// Try playing on load, or start on first tap/scroll
+window.addEventListener("load", startMusic);
+document.addEventListener("click", function autoStart(e) {
+  if (e.target !== musicBtn && music.paused) {
+    startMusic();
   }
+}, { once: true });
 
+musicBtn.addEventListener("click", () => {
+  if (music.paused) {
+    music.play().then(() => {
+      musicBtn.textContent = "♫ Pause chapter music";
+    }).catch(() => {
+      musicBtn.textContent = "Music unavailable";
+    });
+  } else {
+    music.pause();
+    musicBtn.textContent = "♫ Play chapter music";
+  }
 });
 
 

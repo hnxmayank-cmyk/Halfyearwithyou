@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -770,17 +769,17 @@ footer {
     <div class="gallery">
 
       <div class="photo">
-        <img src="images/ch5-1.jpg" alt="Our memory">
+        <img src="ch5-1.jpg" data-base="ch5-1" alt="Our memory">
         <p> meow !! ♡</p>
       </div>
 
       <div class="photo">
-        <img src="images/ch5-2.jpg" alt="Our memory">
+        <img src="ch5-2.jpg" data-base="ch5-2" alt="Our memory">
         <p>My little happiness</p>
       </div>
 
       <div class="photo">
-        <img src="images/ch5-3.jpg" alt="Our memory">
+        <img src="ch5-3.jpg" data-base="ch5-3" alt="Our memory">
         <p>ispe lipgloss ni lgaya tha?</p>
       </div>
 
@@ -837,9 +836,7 @@ footer {
 
 <!-- MUSIC -->
 
-<audio id="music" loop preload="none">
-  <source src="music/chapter5.mp3" type="audio/mpeg">
-</audio>
+<audio id="music" src="chapter5.mp3" loop preload="auto"></audio>
 
 <button class="music-btn" id="musicBtn">
   ♫ Play chapter music
@@ -847,6 +844,34 @@ footer {
 
 
 <script>
+
+/* SMART IMAGE FALLBACK LOADER */
+
+const fallbackFolders = ["", "images/", "Images/", "./images/"];
+const fallbackExts = [".jpg", ".jpeg", ".png", ".webp", ".JPG"];
+
+document.querySelectorAll("img[data-base]").forEach(img => {
+  const baseName = img.getAttribute("data-base");
+  let candidatePaths = [];
+
+  fallbackFolders.forEach(folder => {
+    fallbackExts.forEach(ext => {
+      candidatePaths.push(folder + baseName + ext);
+    });
+  });
+
+  let tryIndex = 0;
+
+  img.addEventListener("error", function handleImgError() {
+    if (tryIndex < candidatePaths.length) {
+      img.src = candidatePaths[tryIndex++];
+    } else {
+      img.style.opacity = ".2";
+      img.removeEventListener("error", handleImgError);
+    }
+  });
+});
+
 
 /* LETTER OPENING + TYPEWRITER */
 
@@ -988,30 +1013,23 @@ function createSparkle() {
 setInterval(createSparkle, 1300);
 
 
-/* MUSIC */
+/* MUSIC (Supports root chapter5.mp3 and music/chapter5.mp3 fallback) */
 
 const music = document.getElementById("music");
 const musicBtn = document.getElementById("musicBtn");
 
-musicBtn.addEventListener("click", async () => {
-
-  try {
-
-    if (music.paused) {
-      await music.play();
-      musicBtn.textContent = "♫ Pause music";
-    } else {
-      music.pause();
-      musicBtn.textContent = "♫ Play chapter music";
-    }
-
-  } catch(error) {
-    musicBtn.textContent = "Music unavailable";
+music.addEventListener("error", function handleAudioError() {
+  if (!music.src.includes("music/chapter5.mp3")) {
+    music.src = "music/chapter5.mp3";
   }
+}, { once: true });
 
-});
+function startMusic() {
+  music.play().then(() => {
+    musicBtn.textContent = "♫ Pause music";
+  }).catch(() => {});
+}
 
-</script>
-
-</body>
-</html>
+window.addEventListener("load", startMusic);
+document.addEventListener("click", function autoStart(e) {
+  if (e.target !== musicBtn && mus
